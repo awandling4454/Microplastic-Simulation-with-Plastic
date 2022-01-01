@@ -1,0 +1,103 @@
+# If the whole line is a comment the line must have a # in column 1
+# Parameter line format is: tag= value [# comment]
+# The order of parameters does not matter
+
+# In general I try to group variablesi that are related
+
+# This group are the variables are frequently changed
+drying = False			# if False then no drying.  if >= 0 then the 9er of sim seconds
+				# before drying starts
+generatePolymers= False		# Generate polymers in simulation
+initialSolidsLoading=.0232
+simTime=	36000		# number of simulation seconds to execute. 0 = only initialize
+#originially 36000 
+particleCount = 2000	# Number of particles to run in simulation
+polymerPercent = 0   	# Percent of solid loading that is polymer
+stericLayerThickness = 0	# Steric Layer Thickness
+temperature = 	300     	# temperature in K
+variableLengthPolymers= False	# Vary polymer length over time
+
+# Aggregate parameters
+particleRad=	   500e-9  	# Particle radius is Meters
+#will be testing 2.5 um, 1 um, 500 nm, 50 nm, and 10 nm
+
+# Polymer Parameters
+latticeConstant= 0# lattice is on this grid size
+minimumNumberOfCrossings = 3	# Number of crossings for polymer to be called tangled
+monomerRad= 0 	    	# monomer radius in Meters  (= bead + bond)
+monomerBeadDiameter= 0
+monomerMolecularWeight=0	# grames per mole
+polymerLength= 0	   	# number of nanometers in polymer
+polymerStiffness=  0	    	# Polymer stiffness. Range 0-1.  Higher number, stiffer polymer
+polymerizationTime= 0  #time to complete polymerization
+# program Tuning parameters
+polymersPerBin = 0	# number of polymers per bin for initial tangle calculation
+generateBasePolymerCount = 0	# How many unique polymers to generate
+processOneBlockMaxSize = 10000 # Size of block to filter tangle candidates
+
+# simulation controls
+addUniqueNumber=True		# if True will add a unique one-up number to output directory
+				# starting with "0001"
+availableCpus = 1		# Number of CPU's to use on problem for drying runs.
+				# Non-drying run only uses 1 CPU.
+				# As of version 2.0 the main program can only keep
+				# 18 CPUs busy for a drying run
+				# > 0 = means to use this number of CPUs
+				# 0   = means use all
+				# < 0 = means use all but this number of CPUs
+fileNameBase=	500nm	# base Name for output/Results files.
+doMathIn = Float64		# Float64 more precise.  FLoat32 Faster
+statInterval = 	120		# Number of seconds between sim status reports to console
+writeDumpPolymers = False	# Should polymers be written to dump file.
+#writeOnSL=.300, .500, .900	# list of dumps based on SL.
+writeParticlesEvery = 0 	# 0 means off
+				# > 0 means to write particles to disk every x 
+				# seconds of simulation
+writeOnSL=			# list of dumps based on SL.
+				# No parameters is off (i.e "writeOnSL=")
+
+
+# Misc parameters.
+fluidDensity = 	0.997       	#  kg/m^3 
+particleRefractiveIndex = 1.525  
+fluidRefractiveIndex = 1.33
+rotationalFrequency = 0.895
+
+# Debug Stuff. 
+downEscapedAggregates=0		# Number of aggregates to hold that go through bottom of box
+saveInitialAtoms= False		# Save set atoms prior to simulation
+graphForcesTest = False		# This test will create particles on the diagonal of the box
+				# Then, per normal, the program will calculate VwD, V_d and 
+				# interact matrix  forces on the system.  These values are 
+				# saved to CSV file for analysis to verify program correctness.
+				# This test will force the following values:
+				# particleCount = 500
+				# particleRad = 1e-9
+				# stericLayerThickness = 0
+				# saveInitialAtoms = true
+				# if you wish to override any of these defaults you can add 
+				# command(s) after this line
+
+V_dCalc = False
+V_sCalc = False
+
+#pH function constants # will find surface potential based on y = -41.63ln(x) + 52.75
+pH = 3.5
+
+
+#EDLConstants
+Eo = 8.854e-12 #vaccum permitivity
+Ef = 76 #dielectric constant of water #not needed in the program
+
+boltz= 1.38e-23
+temp = 300 
+Fe_ions = 1
+Fe_charge = 3
+Cl_ions = 3
+Cl_charge = 1
+electronCharge = 1.6e-19
+Fe_and_Cl_sum = 3.072e-37
+Concentration = .5 #mmol/L
+Concentration_Converted = 3.01e23 #changing mmol to mol and L to m^3
+debyeLength = 5.635e-9
+kappa = 1.775e8
